@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.cru</groupId>
-    <artifactId>cas-client-rest-login</artifactId>
+    <artifactId>cas-client-auth</artifactId>
     <version>1.0-SNAPSHOT</version>
 
 
