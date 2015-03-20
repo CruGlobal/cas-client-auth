@@ -11,11 +11,11 @@ import java.io.IOException;
 public class AuthenticationTest
 {
     @Test
-    public void testLogin() throws IOException
+    public void testLogin() throws IOException, AuthenticationException
     {
         AuthenticationImpl authentication = new AuthenticationImpl();
-        authentication.setHost("https://signintst.cru.org");
-        authentication.setPath("cas/login");
+        authentication.setHost("https://signin.cru.org");
+        authentication.setPath("cas/v1/tickets");
 
         CredentialSet credentialSet = new CredentialSet();
 
