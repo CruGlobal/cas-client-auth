@@ -1,6 +1,9 @@
-package org.cru.ccrl.authentication;
+package org.cru.ccrl.authentication.rest;
 
 import com.google.common.collect.Iterables;
+import org.cru.ccrl.authentication.CredentialSet;
+import org.cru.ccrl.authentication.rest.AuthenticationException;
+import org.cru.ccrl.authentication.rest.AuthenticationImpl;
 import org.testng.annotations.Test;
 
 import java.io.IOException;

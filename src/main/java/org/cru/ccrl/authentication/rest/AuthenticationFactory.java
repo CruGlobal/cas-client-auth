@@ -1,4 +1,4 @@
-package org.cru.ccrl.authentication;
+package org.cru.ccrl.authentication.rest;
 
 /**
  * author@lee.braddock
