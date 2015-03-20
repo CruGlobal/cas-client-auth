@@ -15,9 +15,21 @@ import java.io.IOException;
 public class AuthenticationTest
 {
     @Test
-    public void testLogin() throws IOException, AuthenticationException
+    public void testRESTLogin() throws IOException, AuthenticationException
     {
-        Authentication authentication = AuthenticationFactory.getInstance("https://signin.cru.org", "cas/v1/tickets");
+        Authentication authentication = AuthenticationFactory.getInstance("https://signin.cru.org", "cas/v1/tickets",
+                Protocol.REST);
+
+        CredentialSet credentialSet = new CredentialSet();
+
+        authentication.authenticate(Iterables.getLast(credentialSet));
+    }
+
+    @Test
+    public void testHTTPLogin() throws IOException, AuthenticationException
+    {
+        Authentication authentication = AuthenticationFactory.getInstance("https://signin.cru.org", "cas/login",
+                Protocol.HTTP);
 
         CredentialSet credentialSet = new CredentialSet();
 

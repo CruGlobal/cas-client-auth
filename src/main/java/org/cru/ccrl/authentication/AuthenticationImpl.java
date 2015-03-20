@@ -20,6 +20,8 @@ public class AuthenticationImpl implements Authentication
 
     private String path;
 
+    private Protocol protocol;
+
     private final Log log = LogFactory.getLog(getClass());
 
     @Override
@@ -34,12 +36,29 @@ public class AuthenticationImpl implements Authentication
         Response response = builder.post(Entity.entity(credential.toForm(), MediaType
                 .APPLICATION_FORM_URLENCODED_TYPE));
 
-        if (response.getStatus() != 201)
+        if(protocol.equals(Protocol.REST))
         {
-            String html = response.readEntity(String.class);
+            if(response.getStatus() != 201)
+            {
+                String html = response.readEntity(String.class);
 
-            throw new AuthenticationException("Authentication Error : " + response.getStatus() + ", " +
-                    response.getStatusInfo() + " message " + html);
+                throw new AuthenticationException("Authentication Error : " + response.getStatus() + ", " +
+                        response.getStatusInfo() + " message " + html);
+            }
+        }
+        else if (protocol.equals(Protocol.HTTP))
+        {
+            if(response.getStatus() != 200)
+            {
+                String html = response.readEntity(String.class);
+
+                throw new AuthenticationException("Authentication Error : " + response.getStatus() + ", " +
+                        response.getStatusInfo() + " message " + html);
+            }
+        }
+        else
+        {
+            throw new AuthenticationException("Authentication Error : unknown protocol");
         }
     }
 
@@ -51,5 +70,10 @@ public class AuthenticationImpl implements Authentication
     public void setPath(String path)
     {
         this.path = path;
+    }
+
+    public void setProtocol(Protocol protocol)
+    {
+        this.protocol = protocol;
     }
 }
