@@ -1,5 +1,8 @@
 package org.cru.ccrl.authentication;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -17,8 +20,10 @@ public class AuthenticationImpl implements Authentication
 
     private String path;
 
+    private final Log log = LogFactory.getLog(getClass());
+
     @Override
-    public void authenticate(Credential credential)
+    public void authenticate(Credential credential) throws AuthenticationException
     {
         Client client = ClientBuilder.newClient();
 
@@ -28,6 +33,14 @@ public class AuthenticationImpl implements Authentication
 
         Response response = builder.post(Entity.entity(credential.toForm(), MediaType
                 .APPLICATION_FORM_URLENCODED_TYPE));
+
+        if (response.getStatus() != 201)
+        {
+            String html = response.readEntity(String.class);
+
+            throw new AuthenticationException("Authentication Error : " + response.getStatus() + ", " +
+                    response.getStatusInfo() + " message " + html);
+        }
     }
 
     public void setHost(String host)

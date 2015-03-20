@@ -5,5 +5,5 @@ package org.cru.ccrl.authentication;
  */
 public interface Authentication
 {
-    public void authenticate(Credential credential);
+    public void authenticate(Credential credential) throws AuthenticationException;
 }
