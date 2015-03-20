@@ -1,8 +1,7 @@
-package org.cru.ccrl.authentication.rest;
+package org.cru.ccrl.authentication;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.cru.ccrl.authentication.Credential;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;

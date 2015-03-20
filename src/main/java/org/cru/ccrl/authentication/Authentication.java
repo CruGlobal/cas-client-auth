@@ -1,6 +1,4 @@
-package org.cru.ccrl.authentication.rest;
-
-import org.cru.ccrl.authentication.Credential;
+package org.cru.ccrl.authentication;
 
 /**
  * author@lee.braddock
